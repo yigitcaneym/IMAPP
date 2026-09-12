@@ -5,5 +5,5 @@
 
 Topics: fields on spacetime, the action and Lagrangian density, Euler-Lagrange equations, functional derivatives, Hamiltonian density, continuous/discrete transformations, and the entry point to Noether's theorem.
 
-- Typeset notes: [`lecture.pdf`](lecture.pdf)
+- LaTeX version: [`lecture.pdf`](lecture.pdf)
 - Original handwritten source: [`source/`](source/)

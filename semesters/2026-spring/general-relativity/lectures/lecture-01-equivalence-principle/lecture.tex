@@ -1,5 +1,47 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage{pdfpages}
-\begin{document}
-\includepdf[pages=-,fitpaper=true]{source/Gr - Lecture 1.pdf}
+\input{../../../../../templates/lecture-preamble.tex}
+\title{General Relativity --- Lecture 1}
+\author{Andreas Goudelis --- IMAPP lecture notes}
+\date{Spring 2026}
+\begin{document}\maketitle
+
+\section{Motivation}
+The four fundamental interactions are electromagnetism, the weak interaction, the strong interaction, and gravity. The first three are described within the Standard Model, while gravity is described classically by general relativity (GR). A central motivation for GR is that it provides a theory of gravity as well as a theory of spacetime.
+
+The basic viewpoint is summarized by Wheeler's slogan: matter tells spacetime how to curve, and curved spacetime tells matter how to move. GR is not yet a complete quantum theory, but it is essential in cosmology and in understanding phenomena such as dark matter and the baryon asymmetry of the Universe.
+
+\section{Spacetime language}
+An \textbf{event} is a physical occurrence associated with one point in spacetime. It has neither spatial extension nor duration. Examples include the emission of a photon or the presence of a point particle at a spacetime point.
+
+An \textbf{observer} is represented by a reference frame. Different coordinate descriptions are related by coordinate transformations. A worldline is the path traced by a point-like object through spacetime; extended objects sweep out world sheets or world volumes.
+
+\section{The equivalence principle}
+In Newtonian mechanics a body of inertial mass $m_i$ and gravitational mass $m_g$ obeys
+\[
+m_i\,\mathbf a=m_g\,\mathbf g.
+\]
+The empirical equality $m_i=m_g$ implies the universality of free fall: the acceleration is independent of the composition of the test body.
+
+Einstein's formulation compares a uniform gravitational field with a uniformly accelerated reference frame. Consider an observer in an elevator:
+\begin{itemize}
+  \item In empty space with no acceleration, a released object remains at rest relative to the elevator.
+  \item In empty space with constant upward acceleration, the object approaches the floor.
+  \item In a constant gravitational field, the object also approaches the floor.
+  \item In free fall in a gravitational field, the object floats locally, just as it would in an inertial frame in empty space.
+\end{itemize}
+No local experiment can distinguish a uniform gravitational field from a uniformly accelerated frame. This is the equivalence principle.
+
+\section{Gravitational redshift}
+The equivalence principle predicts a frequency shift. In an accelerated frame, a receiver and emitter separated by a height $h$ acquire a relative velocity approximately
+\[
+\Delta v\simeq ah/c
+\]
+while the photon is in flight. The resulting Doppler shift has the weak-field form
+\[
+\frac{\Delta f}{f}\simeq -\frac{gh}{c^2}.
+\]
+Equivalently, clocks deeper in a gravitational potential tick more slowly than clocks higher up. A photon climbing out of a gravitational field is therefore redshifted.
+
+\section*{Summary}
+GR replaces the Newtonian picture of a force acting in fixed space with a geometric description of curved spacetime. The equivalence principle is the local bridge between gravity and acceleration and leads directly to gravitational time dilation and redshift.
 \end{document}

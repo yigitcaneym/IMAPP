@@ -1,5 +1,493 @@
+% Compile with pdfLaTeX, XeLaTeX, LuaLaTeX, or Tectonic.
+% Self-contained: all diagrams are drawn in TikZ; no external images required.
+% Source: Qft Lecture 1.pdf (9 PDF pages; substantive content on pp. 2--8).
+% The English of the source is retained, with spelling and typesetting tidied.
+% Source annotations, repeated passages, and intermediate equations are retained.
 \documentclass[11pt,a4paper]{article}
-\usepackage{pdfpages}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor,tikz,enumitem,fancyhdr,hyperref}
+\usetikzlibrary{arrows.meta,patterns,decorations.pathreplacing,positioning}
+\hypersetup{hidelinks,pdftitle={QFT Lecture 1 -- Full transcription},pdfauthor={Lecture: Vincent Morenas}}
+\definecolor{annotation}{RGB}{178,35,35}
+\definecolor{editorial}{RGB}{80,85,95}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\Id}{\mathbf{1}}
+\newcommand{\T}{\mathrm{T}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\braket}[2]{\langle #1\mid #2\rangle}
+\newcommand{\mel}[3]{\langle #1\lvert #2\rvert #3\rangle}
+\newcommand{\src}[1]{\par\noindent{\small\color{editorial}\textsc{Source PDF: #1}}\par\medskip}
+\newcommand{\note}[1]{\par\smallskip\noindent{\small\color{editorial}\textit{Aktar{\i}m notu:} #1}\par\smallskip}
+\newcommand{\rednote}[1]{\par\smallskip\noindent{\color{annotation}\textit{Source annotation:} #1}\par\smallskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist[itemize]{leftmargin=1.6em,itemsep=4pt,topsep=4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{QFT -- Lecture 1}
+\rhead{Vincent Morenas}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\allowdisplaybreaks
 \begin{document}
-\includepdf[pages=-,fitpaper=true]{source/qft___first_lecture.pdf}
+
+\begin{center}
+  {\LARGE\bfseries QFT -- Lecture 1}\\[6pt]
+  {\large Vincent Morenas}\\[3pt]
+  \texttt{morenas@in2p3.fr}\qquad Office: \texttt{62??}
+\end{center}
+\src{page 2}
+\note{Kayna\u{g}{\i}n 1. sayfas{\i} yaz{\i}s{\i}z turkuaz bir kapak, 9. sayfas{\i} bo\c{s} kareli
+bir sayfad{\i}r. Ders i\c{c}eri\u{g}i 2--8. sayfalardad{\i}r. Metin \"{o}zg\"{u}n \.{I}ngilizcesiyle
+aktar{\i}lm{\i}\c{s}t{\i}r. Gri aktar{\i}m notlar{\i} \"{o}zg\"{u}n ders metnine ait de\u{g}ildir;
+k{\i}rm{\i}z{\i} a\c{c}{\i}klamalar kaynakta k{\i}rm{\i}z{\i} yaz{\i}lm{\i}\c{s} ekleri g\"{o}sterir.
+Ofis numaras{\i}ndaki soru i\c{s}aretleri kaynakta da bulunmaktad{\i}r.}
+
+\section*{I. Motivation}
+\fbox{\textbf{GOAL}} is to compute decay rates
+\textcolor{editorial}{[illegible/erased fragment]} for inelastic collision.
+\note{``Decay rates'' ile ``for'' aras{\i}nda silinmi\c{s} veya \c{c}ok silik bir
+par\c{c}a vard{\i}r; g\"{u}venilir bi\c{c}imde okunamad{\i}\u{g}{\i} i\c{c}in tamamlanmam{\i}\c{s}t{\i}r.}
+\[
+  \text{inelastic collision}\ \Longrightarrow\
+  \underline{\text{for any final states}}.
+\]
+
+\subsection*{Context in QM}
+\begin{itemize}
+  \item The Dirac equation (spin-$\tfrac12$).
+  \item The Klein--Gordon equation (spin-$0$).
+\end{itemize}
+
+\subsection*{Blackboard text}
+But they deal with \underline{a} particle only (and its antiparticle).
+
+\fbox{\textbf{SOLUTION}} QFT is a quantum relativistic theory of
+\underline{fields}.
+
+(Particles will be modes of these fields.)
+
+\subsection*{Features}
+\begin{minipage}[t]{0.31\textwidth}
+  \textbf{Relativity}
+  \[
+    v\leq c
+  \]
+  Causality.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.65\textwidth}
+  \textbf{Quantum theory}
+  \[
+    \text{probability}\propto
+    \lvert\text{probability amplitude}\rvert^2.
+  \]
+  \[
+    \begin{aligned}
+    &\text{probability amplitude}\\
+    &\quad=\sum_{\text{channels}}
+      \text{probability amplitude for the channel}.
+    \end{aligned}
+  \]
+\end{minipage}
+\[
+  \star\qquad \sum\text{probability}=1.
+\]
+
+\section*{II. First encounter with the S-matrix}
+\underline{New goal}: to compute probability amplitudes.
+
+\newpage
+\src{page 3}
+\subsection*{Example: let's consider two-body decay}
+\[
+  A+B\longrightarrow C+D+E+\cdots
+\]
+\note{``Two-body decay'' ifadesi ile yukar{\i}daki s\"{u}re\c{c} kaynakta bu \c{s}ekilde
+birlikte yaz{\i}lm{\i}\c{s}t{\i}r; terim de\u{g}i\c{s}tirilmemi\c{s}tir.}
+\subsection*{Picture}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth,thick]
+  \draw[->] (-5,3.1)--(5,3.1) node[right,align=left]{time\\flow};
+  \draw (0,0) ellipse (1.55 and 1.35);
+  \node[align=center] at (0,0.25){decay\\occurs};
+  \draw[->] (-5,1.15) node[left]{$A$}--(-2.9,0.72);
+  \draw (-2.9,0.72)--(-1.1,0.35);
+  \draw[->] (-5,-1.05) node[left]{$B$}--(-2.9,-0.57);
+  \draw (-2.9,-0.57)--(-1.1,-0.15);
+  \draw[->] (1.2,0.85)--(5,1.85) node[right]{$C$};
+  \draw[->] (1.55,0)--(5.25,0) node[right]{$D$};
+  \draw[->] (0.9,-1.1)--(5,-2.65) node[right]{$E$};
+  \draw[dashed] (3.2,-0.45) to[bend left=15] (2.1,-1.6);
+  \draw[annotation] (-5.2,-1.8)--(-5.2,-2.3)--(-1.65,-2.3)--(-1.65,-1.8);
+  \node[annotation,align=center] at (-3.45,-2.85){free incoming particle};
+  \draw[annotation] (-1.35,-1.65)--(-1.35,-2.25)--(1.35,-2.25)--(1.35,-1.65);
+  \node[annotation,align=center] at (0,-3.05){interactions\\are switched\\on};
+  \draw[annotation] (1.7,-2.95)--(1.7,-3.5)--(5.3,-3.5)--(5.3,-2.95);
+  \node[annotation,align=center] at (3.5,-4){free outgoing particles};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Quantum description}
+\begin{itemize}
+  \item The incoming state: ``$A$ and $B$'' system,
+  \[
+    \ket{\mathrm{in}}\qquad\text{(normalized state)}.
+  \]
+  \item ``The decay occurs.''
+\end{itemize}
+
+\newpage
+\src{page 4}
+\subsection*{Quantum description -- blackboard}
+\begin{itemize}
+  \item The incoming state: ``$A\ \&\ B$'' system,
+  \[
+    \ket{\mathrm{in}}\qquad\text{(normalized state)}.
+  \]
+  \item ``The decay occurs'':
+  \[
+    \boxed{S\ket{\mathrm{in}}}.
+  \]
+\end{itemize}
+The state $S\ket{\mathrm{in}}$ contains the information of all possible
+outgoing states.
+
+\textbf{Annotations pointing to $S$:}
+\begin{itemize}
+  \item Contains the interaction.
+  \item Evolution operator which acts on $\ket{\mathrm{in}}$.
+\end{itemize}
+
+\subsection*{Probability amplitude and probability}
+\begin{itemize}
+  \item The probability amplitude to get the ``$C$ and $D$ and $E$'' system
+  (the $\ket{\mathrm{out}}$ state) is
+  \[
+    \mel{\mathrm{out}}{S}{\mathrm{in}}.
+  \]
+  \item Probability of this decay:
+  \[
+    \left|\mel{\mathrm{out}}{S}{\mathrm{in}}\right|^2.
+  \]
+\end{itemize}
+
+\newpage
+\src{page 5}
+\subsection*{Consequence}
+Assuming all the $\ket{\mathrm{out}}$ states are linearly independent,
+\[
+  \left(\text{i.e.}\quad
+    \sum_{\mathrm{out}}\ket{\mathrm{out}}\bra{\mathrm{out}}=\Id
+  \right),
+\]
+we have
+\[
+  \sum_{\mathrm{out}}
+    \left|\mel{\mathrm{out}}{S}{\mathrm{in}}\right|^2=1.
+\]
+The left-hand side is
+\[
+  \sum_{\mathrm{out}}
+  \underbrace{\mel{\mathrm{in}}{S^\dagger}{\mathrm{out}}}_{%
+    \mel{\mathrm{out}}{S}{\mathrm{in}}^{*}}
+  \mel{\mathrm{out}}{S}{\mathrm{in}}.
+\]
+\[
+  \Downarrow
+\]
+\[
+  \bra{\mathrm{in}}S^\dagger
+  \underbrace{\left(\sum_{\mathrm{out}}
+    \ket{\mathrm{out}}\bra{\mathrm{out}}\right)}_{\Id}
+  S\ket{\mathrm{in}}.
+\]
+Hence
+\[
+  \mel{\mathrm{in}}{S^\dagger S}{\mathrm{in}}=1.
+\]
+So:
+\[
+  \boxed{S^\dagger S=\Id}\qquad\text{Unitarity}.
+\]
+\note{Kayna\u{g}{\i}n ``linearly independent (i.e.\ \ldots)'' ifadesi aynen
+korunmu\c{s}tur. Yaz{\i}lan birim operat\"{o}r ba\u{g}{\i}nt{\i}s{\i}, yaln{\i}zca do\u{g}rusal
+ba\u{g}{\i}ms{\i}zl{\i}k de\u{g}il, tam bir ortonormal durum k\"{u}mesi varsay{\i}m{\i}d{\i}r.
+\"{U}niterlik sonucu, norm korunmas{\i}n{\i}n t\"{u}m giri\c{s} durumlar{\i} i\c{c}in
+ge\c{c}erli olmas{\i}yla anla\c{s}{\i}l{\i}r.}
+
+\newpage
+\src{page 6}
+\section*{III. Some formal reminders}
+\subsection*{1. A few mathematical formulae}
+\subsubsection*{a) The Volterra equation -- T-product}
+\textbf{Definition: Volterra equation}
+\[
+  \dot F(t)=f(t)
+  \quad\Longrightarrow\quad
+  F(t)=F(t_0)+\int_{t_0}^{t}f(\tau)\dd\tau.
+\]
+\textit{Blackboard annotation:} ``Check this works.''
+
+\subsubsection*{Example: the Schr\"{o}dinger equation}
+\[
+  \ii\hbar\dot\psi(t)=V(t)\psi(t)
+  \quad\Longleftrightarrow\quad
+  \underbrace{\dot\psi(t)}_{\textcolor{annotation}{\dot F(t)}}
+  =\underbrace{\frac{1}{\ii\hbar}V(t)\psi(t)}_{\textcolor{annotation}{f(t)}}.
+\]
+Let's find another expression for the solution of the ``S eq.''
+\begin{align*}
+  \psi(t)
+  &=\psi(t_0)+\int_{t_0}^{t}
+    \frac{1}{\ii\hbar}V(t_1)\psi(t_1)\dd t_1\\[8pt]
+  &=\psi(t_0)+\int_{t_0}^{t}\frac{1}{\ii\hbar}V(t_1)
+    \underbrace{\left\{\textcolor{annotation}{\psi(t_0)
+    +\int_{t_0}^{t_1}\frac{1}{\ii\hbar}V(t_2)\psi(t_2)\dd t_2}
+    \right\}}_{\textcolor{annotation}{\psi(t_1)}}\dd t_1.
+\end{align*}
+\note{``S eq.'' k{\i}saltmas{\i} burada Schr\"{o}dinger denklemini belirtir.
+Alt sat{\i}rdaki k{\i}rm{\i}z{\i} ifade ve $\psi(t_1)$ alt a\c{c}{\i}klamas{\i} kaynakta vard{\i}r.}
+
+\newpage
+\src{page 7, upper blackboard photograph}
+We can repeat the same type of substitutions.
+
+\textit{Blackboard:} We can repeat the same type of substitutions
+``ad infinitum'':
+\[
+  \psi(t)=\psi(t_0)+\sum_{n=1}^{\infty}
+    \psi(t_0)\left(\frac{1}{\ii\hbar}\right)^n
+    \int_{(n)}V(t_1)V(t_2)\cdots V(t_n),
+\]
+where
+\[
+  \int_{(n)}\equiv
+  \int_{t_0}^{t}\dd t_1
+  \int_{t_0}^{t_1}\dd t_2\cdots
+  \int_{t_0}^{t_{n-1}}\dd t_n.
+\]
+\note{Bu ilk seri sat{\i}r{\i}nda $\psi(t_0)$ kaynakta operat\"{o}r \c{c}arp{\i}m{\i}n{\i}n
+solunda yaz{\i}lm{\i}\c{s}t{\i}r ve burada aynen korunmu\c{s}tur. Operat\"{o}rlerin duruma
+etkisini g\"{o}steren, ayn{\i} sayfan{\i}n sonundaki ifadelerde $\psi(t_0)$ sa\u{g}dad{\i}r.}
+
+\subsubsection*{Let's consider the $n=2$ term}
+\[
+  J_2=\int_{t_0}^{t}\dd t_1\int_{t_0}^{t_1}\dd t_2\,
+  V(t_1)V(t_2).
+\]
+This implies that
+\[
+  t_0\leq t_2\leq t_1.
+\]
+\begin{center}
+\begin{tikzpicture}[scale=1.08,>=Stealth]
+  \fill[pattern=north west lines,pattern color=gray!65] (0,0)--(4,0)--(4,4)--cycle;
+  \draw[->] (0,0)--(4.6,0) node[right]{$t_1$};
+  \draw[->] (0,0)--(0,4.65) node[above]{$t_2$};
+  \draw[thick] (0,0)--(4,4) node[above right]{$t_1=t_2$};
+  \draw[thick] (4,0)--(4,4);
+  \node[below left] at (0,0){$t_0$};
+  \node[below] at (4,0){$t$};
+  \draw[dotted] (0,1.45)--(1.45,1.45);
+  \draw[thick,<->] (1.45,0.05)--(1.45,1.4);
+  \node[below] at (1.45,0){$t_1$};
+  \node[left] at (0,1.45){$t_1$};
+  \node[align=left,anchor=west] at (5,2.7){integration domain\\(triangular shaped)};
+  \draw[->] (4.95,2.5)--(3.1,1.6);
+  \node[align=right,anchor=east] at (-0.7,0.6){allowed\\values of $t_2$};
+  \draw[->] (-0.55,0.6)--(1.3,0.6);
+\end{tikzpicture}
+\end{center}
+Integration domain of $J_2$; allowed values of $t_2$.
+
+\newpage
+\src{page 7, middle blackboard photographs}
+We want the boundaries of the integrals not to depend on the integration
+variables.
+
+\underline{Answer}: the Heaviside function,
+\[
+  \Theta(t)=\begin{cases}
+    1,&\text{when }t\geq0,\\
+    0,&\text{when }t<0.
+  \end{cases}
+\]
+Then
+\[
+  J_2=\int_{t_0}^{t}\dd t_1\int_{t_0}^{\textcolor{annotation}{t}}\dd t_2\,
+  V(t_1)V(t_2)\Theta(t_1-t_2).
+\]
+\note{\.{I}kinci integralin sabit \"{u}st s{\i}n{\i}r{\i} $t$, kaynakta daire i\c{c}ine al{\i}nm{\i}\c{s}t{\i}r.}
+A few extra manipulations give
+\begin{align*}
+  J_2&=\frac12J_2+\frac12J_2\\
+  &=\int_{t_0}^{t}\dd t_1\int_{t_0}^{t}\dd t_2\,
+    \frac12V(t_1)V(t_2)\Theta(t_1-t_2)+\text{``the same''}.
+\end{align*}
+\rednote{$t_1\to t_2$ and $t_2\to t_1$.}
+\[
+  J_2=\int_{t_0}^{t}\dd t_1\int_{t_0}^{t}\dd t_2\,
+  \frac12\Bigl(V(t_1)V(t_2)\Theta(t_1-t_2)
+   +V(t_2)V(t_1)\Theta(t_2-t_1)\Bigr).
+\]
+We can now introduce the \textbf{T-product (time-ordered product)}.
+
+\underline{For two operators:}
+\[
+  \underbrace{\T}_{\text{time}}[V(t_1)V(t_2)]=
+  \begin{cases}
+    V(t_1)V(t_2),&\text{when }t_1\geq t_2,\\
+    V(t_2)V(t_1),&\text{when }t_2>t_1.
+  \end{cases}
+\]
+However, using the Heaviside function:
+\begin{align*}
+  \T[V(t_1)V(t_2)]
+    &=V(t_1)V(t_2)\Theta(t_1-t_2)\\
+    &\quad+V(t_2)V(t_1)\Theta(t_2-t_1).
+\end{align*}
+Hence:
+\[
+  \boxed{J_2=\int_{t_0}^{t}\dd t_1\int_{t_0}^{t}\dd t_2\,
+    \frac12\T[V(t_1)V(t_2)]}.
+\]
+\note{Kaynakta $\Theta(0)=1$ yaz{\i}l{\i}d{\i}r. Heaviside ile verilen son ifade,
+e\c{s}it zamanlarda iki terimi de sayar; bu tek nokta konvansiyonu kaynakta
+ayr{\i}ca ele al{\i}nmam{\i}\c{s}t{\i}r. Form\"{u}ller \"{o}zg\"{u}n halleriyle korunmu\c{s}tur.}
+
+\newpage
+\src{page 7, bottom blackboard photograph}
+\subsubsection*{For $n$ in general}
+\[
+  J_n=\int_{t_0}^{t}\dd t_1\int_{t_0}^{t}\dd t_2\cdots
+    \int_{t_0}^{t}\dd t_n\,\frac{1}{n!}
+    \T[V(t_1)V(t_2)\cdots V(t_n)].
+\]
+\subsubsection*{The solution to the ``S eq.''}
+\begin{align*}
+  \psi(t)=\psi(t_0)+\sum_{n=1}^{\infty}\frac{1}{n!}
+    \textcolor{annotation}{\left(\frac{1}{\ii\hbar}\right)^n}
+    \underbrace{\int_{t_0}^{t}\dd t_1\cdots\int_{t_0}^{t}\dd t_n\,
+    \T[V(t_1)\cdots V(t_n)]}_{\text{``$n$ dependency''}}
+    \psi(t_0).
+\end{align*}
+\[
+  \Longrightarrow\quad
+  \psi(t)=\sum_{n=0}^{\infty}\frac{1}{n!}
+    \textcolor{annotation}{\left(\frac{1}{\ii\hbar}\right)^n}
+    \left\{\int_{t_0}^{t}\dd t_1\cdots\int_{t_0}^{t}\dd t_n\,
+    \T[V(t_1)\cdots V(t_n)]\right\}\psi(t_0).
+\]
+\rednote{The factor $(1/(\ii\hbar))^n$ is inserted by red arrows into
+both series in the source.}
+
+\textit{Blackboard annotations:}
+\[
+  n=0:\quad 1,
+  \qquad\qquad
+  \sum_{n=0}^{\infty}\frac{1}{n!}x^n.
+\]
+\note{$n=0$ terimindeki bo\c{s} integral ve bo\c{s} operat\"{o}r \c{c}arp{\i}m{\i} birim
+olarak yorumlan{\i}r; kaynakta bu ``$n=0:1$'' \c{s}eklinde belirtilmi\c{s}tir.}
+
+\newpage
+\src{page 8, top blackboard photograph}
+Since this looks like the expansion of the exponential function, we define:
+\subsubsection*{Time-ordered exponential}
+\[
+  \boxed{\begin{aligned}
+  &\T\exp\left(\int_{t_0}^{t}f(\tau)\dd\tau\right)\\
+  &\quad=\sum_{n=0}^{\infty}\frac{1}{n!}
+    \int_{t_0}^{t}\dd t_1\cdots\int_{t_0}^{t}\dd t_n\,
+    \T[f(t_1)\cdots f(t_n)].
+  \end{aligned}}
+\]
+Hence, we can write the solution of the ``S'' equation as:
+\[
+  \boxed{\begin{aligned}
+    &\ii\hbar\dot\psi(t)=V(t)\psi(t)\\[4pt]
+    &\quad\Longleftrightarrow\quad
+    \psi(t)=\T\exp\left(\frac{1}{\ii\hbar}
+      \int_{t_0}^{t}V(\tau)\dd\tau\right)\psi(t_0).
+  \end{aligned}}
+\]
+\textbf{Remark:} If $V$ does not depend on time, then
+\[
+  \psi(t)=\underbrace{\exp\left(\frac{1}{\ii\hbar}(t-t_0)V\right)}_{%
+    \text{evolution operator in QM}}\psi(t_0).
+\]
+
+\subsubsection*{b) Green functions}
+\src{page 8, second photograph and third photograph, left side}
+A method used to solve differential equations.
+
+We want to solve
+\[
+  Ly(x)=f(x),
+\]
+where $L$ is a differential operator
+\[
+  \left(\text{e.g.}\quad L=\frac{\dd^2}{\dd x^2}\right).
+\]
+If we can solve
+\begin{equation}
+  LG(x)=\underbrace{\delta(x)}_{\text{Dirac ``function''}},\tag{$*$}
+\end{equation}
+then
+\[
+  y(x)=\int_{-\infty}^{+\infty}G(x-x')f(x')\dd x'
+  =\underbrace{(G*f)(x)}_{\text{convolution product}}.
+\]
+The problem is to solve $(*)$ (method by Fourier transform):
+\[
+  \operatorname{FT}[\delta(x)]=1.
+\]
+$G$: Green function.
+
+\newpage
+\src{page 8, third photograph, right side, and bottom photograph}
+\subsection*{2. Canonical transformations in QM}
+\subsubsection*{a) Definition}
+A canonical transformation does not change the physical content of the
+theory and keeps the structure of the mathematical expression intact.
+It simplifies the calculation.
+
+In QM, the canonical transformations will be unitary operators $U$.
+\subsubsection*{States}
+\[
+  \ket{\psi}\xrightarrow{\ U\ }\ket{\psi'}
+    =\ket{U\psi}=U\ket{\psi}.
+\]
+\textbf{Remark:}
+\begin{align*}
+  \braket{\chi'}{\psi'}
+    &=\bra{\chi}\underbrace{U^\dagger U}_{\Id}\ket{\psi}\\
+    &=\braket{\chi}{\psi}.
+\end{align*}
+\textit{Side annotation:}
+\[
+  \bra{\chi'}\ \longleftarrow\ \ket{\chi'}^{\dagger}.
+\]
+\subsubsection*{Observable (operator)}
+\[
+  A\xrightarrow{\ U\ }A'=UAU^\dagger.
+\]
+
+\subsubsection*{b) Reminder: Schr\"{o}dinger picture}
+\fbox{State}\hfill $\ket{\psi(t)}$
+\[
+  \begin{cases}
+    \displaystyle\ii\hbar\frac{\partial\ket{\psi}}{\partial t}
+      =H\ket{\psi},\\[9pt]
+    \ket{\psi(t_0)}=\ket{\psi_0}.
+  \end{cases}
+\]
+\note{Ders i\c{c}eri\u{g}i kaynakta bu ba\c{s}lang{\i}\c{c} ko\c{s}uluyla sona erer.
+Sonraki 9. sayfa bo\c{s}tur.}
 \end{document}

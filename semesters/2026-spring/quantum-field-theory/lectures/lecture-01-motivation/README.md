@@ -3,5 +3,5 @@
 - Lecturer: Vincent Morenas
 - Status: previously transcribed
 
-- Typeset notes: [`lecture.pdf`](lecture.pdf)
+- LaTeX version: [`lecture.pdf`](lecture.pdf)
 - Original handwritten source: [`source/`](source/)
