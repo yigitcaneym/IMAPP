@@ -1,38 +1,5 @@
 \documentclass[11pt,a4paper]{article}
-\input{../../../../../templates/lecture-preamble.tex}
-\title{Particle Physics --- Decay Rates}
-\author{IMAPP lecture notes}
-\date{Spring 2026}
-\begin{document}\maketitle
-
-\section{Exponential decay}
-If $N(t)$ particles are present, a constant decay rate gives
-\[
-\dd N=-\Gamma N\,\dd t,\qquad N(t)=N(0)e^{-\Gamma t},\qquad \tau=\Gamma^{-1}.
-\]
-The width $\Gamma$ is the natural width associated with the finite lifetime.
-
-\section{Decay width}
-For a decay into a set of final states, the differential width is written schematically as
-\[
-\dd\Gamma=\frac{1}{2E_A}|\mathcal M|^2\dd\Phi_n,
-\]
-where $\mathcal M$ is the Lorentz-invariant matrix element and $\dd\Phi_n$ is the Lorentz-invariant $n$-body phase-space measure. For two final particles,
-\[
-\dd\Phi_2=(2\pi)^4\delta^{(4)}\!\left(p_A-\sum_i p_i\right)
-\prod_{i=1}^2\frac{\dd^3\mathbf p_i}{(2\pi)^3 2E_i}.
-\]
-The total width is obtained by integrating over all allowed final-state momenta.
-
-\section{Cross-sections}
-The interaction rate is the incident flux multiplied by the number of target particles and the cross-section:
-\[
-\text{rate}=\text{flux}\times N_{\text{target}}\times\sigma.
-\]
-The cross-section has dimensions of area; the barn is a standard unit, $1\,\mathrm{b}=10^{-28}\,\mathrm{m}^2$.
-
-For two incoming particles, the Lorentz-invariant flux can be expressed in terms of their four-momenta. The invariant matrix element and phase-space factors together ensure that the calculated rate is frame independent.
-
-\section*{Summary}
-Decay widths describe the probability per unit time for an unstable state to decay. Cross-sections describe interaction probabilities per incident flux. Both are built from invariant amplitudes and Lorentz-invariant phase space.
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages=-,fitpaper=true]{source/PP - Lecture 1 - Stephane.pdf}
 \end{document}

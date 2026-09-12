@@ -1,39 +1,5 @@
 \documentclass[11pt,a4paper]{article}
-\input{../../../../../templates/lecture-preamble.tex}
-\title{Particle Physics --- Interactions and Fields}
-\author{IMAPP lecture notes}
-\date{Spring 2026}
-\begin{document}\maketitle
-
-\section{Classical potential picture}
-For a static source, the potential satisfies a Klein-Gordon-type equation,
-\[
-\left(\nabla^2-\frac{1}{R_0^2}\right)V(\mathbf R)=\delta^{(3)}(\mathbf R).
-\]
-For a massless mediator ($R_0\to\infty$), this gives the Coulomb form $V(R)\propto1/R$. For a massive mediator, the potential is Yukawa-like:
-\[
-V(R)\propto\frac{e^{-R/R_0}}{4\pi R},\qquad R_0\simeq\frac{1}{m_X}.
-\]
-The finite range of the strong nuclear force, roughly $R_0\sim1\,\mathrm{fm}$, corresponds to a mediator mass of order $200\,\mathrm{MeV}$.
-
-\section{Exchange of a virtual particle}
-At higher energies, interactions are described by quantum field theory. A scattering amplitude contains the couplings at the two vertices and the propagator of the exchanged particle:
-\[
-\mathcal M\sim g_a\,\frac{1}{q^2-m_X^2}\,g_b,
-\]
-where $q$ is the transferred four-momentum. The exchanged particle is virtual and need not satisfy $q^2=m_X^2$; it is off shell.
-
-\section{Feynman channels}
-For $2\to2$ scattering, the momentum transfer can be organized into channels:
-\begin{itemize}
-  \item $t$-channel exchange: $q=p_1-p_3$, typically spacelike ($q^2<0$).
-  \item $s$-channel exchange: the incoming particles form a time-like intermediate state ($q^2=s>0$).
-  \item $u$-channel exchange: the crossed version of the process.
-\end{itemize}
-
-\section{Interaction strengths}
-The electromagnetic interaction is controlled by the fine-structure constant $\alpha\simeq1/137$. Strong interactions are characterized by colour charge and a scale-dependent coupling. Weak interactions involve flavour and/or neutrino changes and are suppressed at low energy by massive-boson propagation, with a typical factor proportional to $1/M_W^2$.
-
-\section*{Summary}
-The potential picture becomes a field-theoretic exchange picture: range is set by mediator mass, amplitudes contain propagators, and scattering is classified by $s$, $t$, and $u$ channels.
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages=-,fitpaper=true]{source/PP - Lecture 3.pdf}
 \end{document}
