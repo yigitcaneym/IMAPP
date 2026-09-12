@@ -9,5 +9,7 @@
 *.run.xml
 *.synctex.gz
 *.toc
-*.pdf
 .DS_Store
+
+# The template is not a lecture deliverable.
+semesters/2026-spring/_course-template/**/*.pdf

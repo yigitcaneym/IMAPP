@@ -21,6 +21,8 @@ semesters/
                 ├── README.md
                 ├── lecture.tex
                 ├── figures/
+                ├── source/            # original handwritten Goodnotes PDF
+                ├── lecture.pdf        # typeset version
                 └── references.bib
 templates/
 └── lecture.tex
@@ -33,7 +35,8 @@ scripts/
 - Semester folders use `YYYY-fall`, `YYYY-spring`, or `YYYY-summer`.
 - Course folders use lowercase kebab-case, e.g. `quantum-field-theory`.
 - Lecture folders use a two-digit number and a short topic, e.g. `lecture-03-path-integrals`.
-- Generated files should stay next to their source or be excluded via `.gitignore`; the source `.tex`, figures, and bibliography remain tracked.
+- Each lecture keeps both the original handwritten source PDF and the typeset `lecture.pdf`.
+- Generated LaTeX auxiliaries are excluded via `.gitignore`; source PDFs, `.tex`, figures, and bibliographies remain tracked.
 
 ## How to use the notes
 
