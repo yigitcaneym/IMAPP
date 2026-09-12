@@ -1,0 +1,37 @@
+\documentclass[11pt,a4paper]{article}
+\input{../../../../../templates/lecture-preamble.tex}
+\title{Particle Physics --- Strong Interaction}
+\author{IMAPP lecture notes}
+\date{Spring 2026}
+\begin{document}\maketitle
+
+\section{Deep inelastic scattering}
+Deep inelastic scattering probes the internal structure of the proton at large momentum transfer. The relevant regime is characterized by
+\[
+Q^2=-q^2>0,
+\]
+with $Q^2$ large compared with hadronic scales. At sufficiently high energy, the proton behaves as a collection of point-like constituents, the partons.
+
+\section{Quarks and colour}
+Quarks come in six flavours and carry colour charge. The colour degree of freedom is described by the fundamental representation of $SU(3)$, with three colour states. Observable hadrons are colour singlets:
+\[
+3\otimes\bar 3=1\oplus8,\qquad 3\otimes3\otimes3=1\oplus\cdots.
+\]
+The absence of isolated coloured particles is confinement. The strong interaction is mediated by eight gluons, corresponding to the generators of $SU(3)$.
+
+\section{Parton distribution functions}
+The parton distribution function (PDF) $f_i(x,Q^2)$ gives the probability density to find a parton of type $i$ carrying momentum fraction $x$ at resolution $Q^2$. A schematic factorization formula is
+\[
+\sigma=\sum_i\int_0^1\dd x\,f_i(x,Q^2)\,\hat\sigma_i(x,Q^2),
+\]
+where $\hat\sigma_i$ is the hard partonic cross-section. PDFs are non-perturbative inputs and are measured or fitted from data.
+
+\section{Hadron colliders}
+At a collider such as the LHC, the partonic centre-of-mass energy is smaller than the proton-proton centre-of-mass energy because only fractions $x_1$ and $x_2$ of the proton momenta participate. The partonic energy satisfies $\hat s=x_1x_2s$. Increasing $Q^2$ resolves shorter distances and reveals more partonic structure.
+
+\section{Comparison with the weak interaction}
+The strong interaction is mediated by massless gluons and has a characteristic coupling that runs with the energy scale. The weak interaction is mediated by massive bosons, so its low-energy strength is suppressed by powers of $1/M_W^2$. Weak processes can change flavour and involve neutrinos; strong processes conserve flavour at the interaction vertex.
+
+\section*{Summary}
+Deep inelastic scattering established the partonic structure of the proton. QCD describes quarks carrying colour and interacting through eight gluons, while PDFs connect the non-perturbative proton to calculable hard scattering.
+\end{document}

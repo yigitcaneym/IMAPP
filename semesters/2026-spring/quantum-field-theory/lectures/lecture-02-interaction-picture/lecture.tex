@@ -1,0 +1,68 @@
+\documentclass[11pt,a4paper]{article}
+\input{../../../../../templates/lecture-preamble.tex}
+\title{Quantum Field Theory --- Lecture 2}
+\author{IMAPP lecture notes}
+\date{Spring 2026}
+\begin{document}\maketitle
+
+\section{Pictures of time evolution}
+With a time-independent Hamiltonian, the evolution operator is
+\[
+U(t,t_0)=\exp\!\left[-\frac{\ii}{\hbar}H(t-t_0)\right].
+\]
+In the Schrödinger picture states evolve and operators are fixed. In the Heisenberg picture,
+\[
+|\psi\rangle_H=U^\dagger|\psi(t)\rangle_S,\qquad A_H(t)=U^\dagger A_S U,
+\]
+so the state is time independent and operators carry the time dependence.
+
+For perturbation theory, split the Hamiltonian into a solvable part and an interaction,
+\[
+H=H_0+H_{\mathrm{int}}.
+\]
+The interaction picture evolves states with $H_{\mathrm{int}}$ and operators with $H_0$:
+\[
+|\psi(t)\rangle_I=U_0^\dagger(t,t_0)|\psi(t)\rangle_S,
+\qquad A_I(t)=U_0^\dagger A_S U_0.
+\]
+The operator equation is
+\[
+\ii\hbar\frac{\dd A_I}{\dd t}=[A_I,H_0]+\ii\hbar\left(\frac{\partial A}{\partial t}\right)_I.
+\]
+
+\section{The quantum harmonic oscillator}
+In dimensionless variables, $[X,P]=\ii$, and the ladder operators are
+\[
+a=\frac{1}{\sqrt2}(X+\ii P),\qquad a^\dagger=\frac{1}{\sqrt2}(X-\ii P),
+\qquad [a,a^\dagger]=1.
+\]
+The number operator $N=a^\dagger a$ satisfies
+\[
+[N,a]=-a,\qquad [N,a^\dagger]=a^\dagger.
+\]
+Its eigenstates obey
+\[
+N|n\rangle=n|n\rangle,
+\qquad a|n\rangle=\sqrt n\,|n-1\rangle,
+\qquad a^\dagger|n\rangle=\sqrt{n+1}\,|n+1\rangle.
+\]
+The state $|0\rangle$ is the vacuum, defined by $a|0\rangle=0$. The ladder operators remove or add one quantum of excitation.
+
+\section{From a discrete string to a field}
+A discrete chain of masses and springs has a finite set of coordinates $q_i(t)$. Taking the continuum limit sends the lattice spacing $a\to0$ while keeping the mass density and elastic modulus fixed. The discrete variables become a displacement field
+\[
+q_i(t)\longrightarrow \phi(x,t).
+\]
+The action becomes an integral over spacetime,
+\[
+S[\phi]=\int \dd t\int \dd x\,\mathcal L(\phi,\partial_t\phi,\partial_x\phi).
+\]
+For a simple string, the equation of motion takes the wave-equation form
+\[
+\partial_t^2\phi-v^2\partial_x^2\phi=0.
+\]
+The important conceptual step is that a field theory has a continuous set of dynamical variables, one for each point in space.
+
+\section*{Summary}
+The interaction picture separates free evolution from interactions, while the harmonic oscillator shows how quantized excitations arise. The continuum limit replaces discrete coordinates by fields and sums by spatial integrals.
+\end{document}

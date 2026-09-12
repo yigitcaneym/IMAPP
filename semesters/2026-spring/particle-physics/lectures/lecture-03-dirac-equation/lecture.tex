@@ -1,0 +1,41 @@
+\documentclass[11pt,a4paper]{article}
+\input{../../../../../templates/lecture-preamble.tex}
+\title{Particle Physics --- Fermi's Golden Rule and the Dirac Equation}
+\author{IMAPP lecture notes}
+\date{Spring 2026}
+\begin{document}\maketitle
+
+\section{Fermi's golden rule}
+For a perturbation $H_{\mathrm{int}}$ and an initial state $|i\rangle$, the first-order transition rate into final states with density $\rho(E_f)$ is
+\[
+\Gamma_{i\to f}=2\pi\,|T_{fi}|^2\rho(E_f),\qquad T_{fi}=\langle f|H_{\mathrm{int}}|i\rangle.
+\]
+For relativistic particle physics, one uses the invariant matrix element $\mathcal M$ and the invariant phase-space measure instead of the frame-dependent $T_{fi}$.
+
+\section{The Dirac equation}
+The Klein-Gordon equation describes scalar particles but does not provide a positive-definite probability density for a one-particle interpretation. Dirac sought an equation first order in time and space:
+\[
+\ii\partial_t\psi=\left(\boldsymbol\alpha\cdot\mathbf p+\beta m\right)\psi.
+\]
+Consistency with the relativistic dispersion relation requires
+\[
+\{\alpha_i,\alpha_j\}=2\delta_{ij},\qquad
+\{\alpha_i,\beta\}=0,\qquad \beta^2=1.
+\]
+These matrices are represented by $4\times4$ Dirac matrices, so $\psi$ has four components.
+
+Introducing $\gamma^0=\beta$, $\gamma^i=\beta\alpha_i$, the covariant equation is
+\[
+(\ii\gamma^\mu\partial_\mu-m)\psi=0.
+\]
+
+\section{Particle and antiparticle solutions}
+The equation has positive- and negative-energy solutions. In the Feynman-Stueckelberg interpretation, negative-energy solutions are reinterpreted as positive-energy antiparticles propagating forward in time. The free spin-half solutions are written as spinors $u_s(p)$ for particles and $v_s(p)$ for antiparticles, with completeness relations of the form
+\[
+\sum_s u_s(p)\bar u_s(p)=\slashed p+m,qquad
+\sum_s v_s(p)\bar v_s(p)=\slashed p-m.
+\]
+
+\section*{Summary}
+The golden rule connects perturbative amplitudes to transition rates. The Dirac equation is Lorentz covariant, describes spin-$1/2$ fermions, and naturally predicts antiparticles.
+\end{document}

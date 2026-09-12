@@ -1,0 +1,45 @@
+\documentclass[11pt,a4paper]{article}
+\input{../../../../../templates/lecture-preamble.tex}
+\title{Particle Physics --- General Concepts}
+\author{IMAPP lecture notes}
+\date{Spring 2026}
+\begin{document}\maketitle
+
+\section{Natural units}
+Particle physics commonly uses $\hbar=c=1$. The conversion factors are
+\[
+\hbar=1.055\times10^{-34}\,\mathrm{J\,s},\qquad c=2.998\times10^8\,\mathrm{m\,s^{-1}},
+\qquad 1\,\mathrm{GeV}=1.602\times10^{-10}\,\mathrm{J}.
+\]
+In natural units, time has dimensions of inverse energy and length has dimensions of inverse energy:
+\[
+[T]=E^{-1},\qquad [L]=E^{-1}.
+\]
+Useful conversions are $1\,\mathrm{GeV}^{-1}\simeq0.197\,\mathrm{fm}$ and $1\,\mathrm{fm}\simeq5.07\,\mathrm{GeV}^{-1}$.
+
+\section{Mandelstam variables}
+For a $2\to2$ process with momenta $p_1,p_2\to p_3,p_4$,
+\[
+s=(p_1+p_2)^2,\qquad t=(p_1-p_3)^2,\qquad u=(p_1-p_4)^2.
+\]
+For fixed external masses, $s+t+u=\sum_i m_i^2$. In the centre-of-mass frame, $\sqrt{s}$ is the total energy.
+
+\section{Decay and the Breit-Wigner form}
+The population of unstable particles follows
+\[
+N(t)=N(0)e^{-\Gamma t},\qquad \tau=\Gamma^{-1},
+\]
+where $\Gamma$ is the total decay width. A finite lifetime gives an energy distribution around the resonance energy $E_0$:
+\[
+\rho(E)\propto\frac{\Gamma/2}{(E-E_0)^2+(\Gamma/2)^2}.
+\]
+The full width at half maximum is $\Gamma$.
+
+For a resonance $R$ produced and then decaying, $A+B\to R\to A+B$, the cross-section is enhanced near $\sqrt{s}=M_R$. In the narrow-width approximation, $\Gamma\ll M_R$, the resonant factor approaches a delta function and production and decay can be approximately factorized:
+\[
+\sigma(A B\to R\to X)\simeq\sigma(A B\to R)\,\mathrm{Br}(R\to X).
+\]
+
+\section*{Summary}
+Natural units simplify relativistic calculations, Mandelstam variables organize $2\to2$ kinematics, and unstable particles appear as Breit-Wigner resonances with width set by their lifetime.
+\end{document}
