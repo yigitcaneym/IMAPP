@@ -1,155 +1,287 @@
 \documentclass[11pt,a4paper]{article}
 \input{../../../../../templates/lecture-preamble.tex}
 \title{Quantum Field Theory --- Lecture 2}
-\author{IMAPP lecture notes}
-\date{Spring 2026}
-\begin{document}\maketitle
+\author{}
+\date{}
+\begin{document}
 
-\section{Pictures of time evolution}
-With a time-independent Hamiltonian, the evolution operator is
-\[
-U(t,t_0)=\exp\!\left[-\frac{\ii}{\hbar}H(t-t_0)\right].
-\]
-In the Schrödinger picture states evolve and operators are fixed. In the Heisenberg picture,
-\[
-|\psi\rangle_H=U^\dagger|\psi(t)\rangle_S,\qquad A_H(t)=U^\dagger A_S U,
-\]
-so the state is time independent and operators carry the time dependence.
+\section*{Heisenberg picture}
 
-For perturbation theory, split the Hamiltonian into a solvable part and an interaction,
+For a time-independent Hamiltonian,
 \[
-H=H_0+H_{\mathrm{int}}.
+U=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H\right].
 \]
-The interaction picture evolves states with $H_{\mathrm{int}}$ and operators with $H_0$:
+\textbf{States:}
 \[
-|\psi(t)\rangle_I=U_0^\dagger(t,t_0)|\psi(t)\rangle_S,
-\qquad A_I(t)=U_0^\dagger A_S U_0.
+|\psi\rangle_H=U|\psi(t)\rangle_S.
 \]
-The operator equation is
+\textbf{But since}
 \[
-\ii\hbar\frac{\dd A_I}{\dd t}=[A_I,H_0]+\ii\hbar\left(\frac{\partial A}{\partial t}\right)_I.
+[H,H]=0,
+\]
+\textbf{Then}
+\[
+\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H\right]
+\exp\!\left[\frac{\ii}{\hbar}(t-t_0)H\right]
+=\mathbb{1}.
+\]
+Using
+\[
+e^A e^B=e^{A+B}
+\quad\Longleftrightarrow\quad
+[A,B]=0
+\]
+(the Campbell--Baker--Hausdorff formula), one obtains
+\[
+|\psi\rangle_H=|\psi_0\rangle,
+\qquad\text{NO TIME DEPENDENCY}.
 \]
 
-\section{The quantum harmonic oscillator}
-In dimensionless variables, $[X,P]=\ii$, and the ladder operators are
+\textbf{Operator:}
 \[
-a=\frac{1}{\sqrt2}(X+\ii P),\qquad a^\dagger=\frac{1}{\sqrt2}(X-\ii P),
-\qquad [a,a^\dagger]=1.
+A_H=UAU^\dagger.
 \]
-The number operator $N=a^\dagger a$ satisfies
+Thus
 \[
-[N,a]=-a,\qquad [N,a^\dagger]=a^\dagger.
+A_H(t)\text{ picks up a time dependency}.
 \]
-Its eigenstates obey
+\textbf{Differential eq.?}
+\[
+\ii\hbar\,\partial_t A_H(t)
+=\ii\hbar\left[
+(\partial_tU)AU^\dagger
++UA(\partial_tU^\dagger)
+\right].
+\]
+\textbf{but}
+\[
+\partial_tU=-\frac{\ii}{\hbar}HU,
+\qquad
+\partial_tU^\dagger
+=\left(-\frac{\ii}{\hbar}HU\right)^\dagger
+=\frac{\ii}{\hbar}U^\dagger H
+\qquad (H^\dagger=H),
+\]
+then
+\[
+\ii\hbar\,\partial_t A_H(t)
+=-HA_H(t)+A_H(t)H
+=[A_H(t),H].
+\]
+
+\section*{d) Interaction picture}
+
+Let us assume that $H$ can be decomposed into
+\[
+H=H_0+V,
+\]
+where $H_0$ is the Hamiltonian part and $V$ is the interaction part. Then we choose
+\[
+U=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H_0\right].
+\]
+\textbf{States:}
+\[
+|\psi\rangle_I
+=U|\psi(t)\rangle_S
+=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H_0\right]
+|\psi(t)\rangle_S.
+\]
+\begin{center}
+\textit{Interaction picture}\qquad\textit{S picture}
+\end{center}
+\[
+|\psi\rangle_I\Longrightarrow\text{TIME DEPENDENCY}.
+\]
+
+\textbf{Operator:}
+\[
+A_I=U(t)AU^\dagger(t),
+\]
+\[
+A_I(t)\ \longleftarrow\ \text{TIME DEPENDENCY}.
+\]
+We can show that (check) $A_I(t)$ is solution of
+\[
+\ii\hbar\,\partial_t A_I(t)
+=[A_I(t),H_0].
+\]
+\textit{The time evolution of $A_I$ is the one of a free object.}
+
+$\Longrightarrow$ Quantum Oscillator (Phys-...)
+
+\section*{Quantum oscillator}
+
+the Classical 1D quantum oscillator:
+\[
+H=\frac{p^2}{2m}+\frac12m\omega^2x^2,
+\qquad
+[x,p]=\ii\hbar.
+\]
+
+\subsection*{Introducing dimensionless (dimensionless) variables}
+
+Introduce
+\[
+X=\sqrt{\frac{m\omega}{\hbar}}\,x,
+\qquad
+P=\frac{1}{\sqrt{m\hbar\omega}}\,p.
+\]
+Then
+\[
+H=\frac12\hbar\omega(X^2+P^2),
+\qquad
+[X,P]=\ii.
+\]
+
+\subsection*{Ladder operators}
+
+We introduce the ladder operators
+\[
+a=\frac{1}{\sqrt2}(X+\ii P),
+\qquad
+a^\dagger=\frac{1}{\sqrt2}(X-\ii P),
+\]
+with
+\[
+[a,a^\dagger]=1.
+\]
+Then
+\[
+H=\hbar\omega\left(\frac12+a^\dagger a\right).
+\]
+
+We introduce the Hermitian operator
+\[
+N=a^\dagger a.
+\]
+It satisfies
+\[
+[N,a]=-a,
+\qquad
+[N,a^\dagger]=a^\dagger,
+\qquad
+[N,H]=0.
+\]
+There is a common set of eigenstates $\{|n\rangle\}$:
 \[
 N|n\rangle=n|n\rangle,
-\qquad a|n\rangle=\sqrt n\,|n-1\rangle,
-\qquad a^\dagger|n\rangle=\sqrt{n+1}\,|n+1\rangle.
+\qquad
+H|n\rangle=E_n|n\rangle.
 \]
-The state $|0\rangle$ is the vacuum, defined by $a|0\rangle=0$. The ladder operators remove or add one quantum of excitation.
+It is equivalent to use $\{E_n\}$ to describe the states.
 
-\section{From a discrete string to a field}
-A discrete chain of masses and springs has a finite set of coordinates $q_i(t)$. Taking the continuum limit sends the lattice spacing $a\to0$ while keeping the mass density and elastic modulus fixed. The discrete variables become a displacement field
-\[
-q_i(t)\longrightarrow \phi(x,t).
-\]
-The action becomes an integral over spacetime,
-\[
-S[\phi]=\int \dd t\int \dd x\,\mathcal L(\phi,\partial_t\phi,\partial_x\phi).
-\]
-For a simple string, the equation of motion takes the wave-equation form
-\[
-\partial_t^2\phi-v^2\partial_x^2\phi=0.
-\]
-The important conceptual step is that a field theory has a continuous set of dynamical variables, one for each point in space.
+\subsection*{Action of the operator $a$ on a $|n\rangle$ state}
 
-
-\section{Detailed derivation of the oscillator}
-
-The action of the number operator on an eigenstate gives
 \[
 [N,a]|n\rangle
-= N(a|n\rangle)-a(N|n\rangle)
-= N(a|n\rangle)-n(a|n\rangle)
+=N(a|n\rangle)-a(N|n\rangle)
+=N(a|n\rangle)-n(a|n\rangle)
 =-a|n\rangle.
 \]
 Therefore
 \[
 N(a|n\rangle)=(n-1)(a|n\rangle).
 \]
-The state $a|n\rangle$ is an eigenstate of $N$ with eigenvalue $n-1$:
+Thus $a|n\rangle$ is an eigenstate of $N$ with eigenvalue $(n-1)$:
 \[
 a|n\rangle=\alpha|n-1\rangle.
 \]
-The normalization is determined by
+The normalization factor is determined by
 \[
 |\alpha|^2
 =\langle n-1|\alpha^*\alpha|n-1\rangle
 =\langle n|a^\dagger a|n\rangle
-=\langle n|N|n\rangle=n.
+=\langle n|N|n\rangle
+=n.
 \]
-Choosing $\alpha=\sqrt n$ gives
+For $n\geq0$ real, choose
+\[
+\alpha=\sqrt n.
+\]
+Hence
 \[
 a|n\rangle=\sqrt n\,|n-1\rangle.
 \]
-For the vacuum state,
+
+The vacuum state satisfies
 \[
 a|0\rangle=0.
 \]
-The operator $a$ is therefore the annihilation operator: it removes one unit of $N$, i.e. one quantum of energy $\hbar\omega$. Conversely,
+The annihilation operator removes one unit of $N$, i.e. one quantum of energy $\hbar\omega$.
+
+\subsection*{Creation operator}
+
+For the same reason,
 \[
-a^\dagger|n\rangle=\sqrt{n+1}\,|n+1\rangle
+a^\dagger|n\rangle
+=\sqrt{n+1}\,|n+1\rangle.
 \]
-is the creation operator.
-
-\section{From discrete variables to a field}
-
-A field theory is a theory with a continuum of variables, rather than a set of discrete variables. Consider an elastic string modelled as an infinite chain of point masses attached by identical springs. The set
+This is the creation operator. Starting from the vacuum,
 \[
-\{\varphi_i\mid i\in\{1,\ldots,N\}\}
+\frac{1}{\sqrt{n!}}(a^\dagger)^n|0\rangle=|n\rangle.
 \]
-describes a possible state of the discrete system.
 
-For short-range interactions, the Hamiltonian is
+\section*{Chapter 2: Classical Field Theory}
+
+\subsection*{Continuous systems --- classical fields}
+
+A field theory is a theory with a continuum of variables instead of a set of discrete variables.
+
+\subsection*{From a discrete to a continuous formulation}
+
+\textit{Problem set up:}
+
+Consider an elastic string: an infinite chain of point masses attached with identical massless springs. The set
+\[
+\{\varphi_i,\ i\in\{1,N\}\}
+\]
+is the set of discrete variables representing a possible state of the system.
+
+We will assume short-range interaction. The Hamiltonian is
 \[
 H=\sum_i\left[
 \frac12m\dot\varphi_i^{\,2}
-+\frac12 k(\varphi_{i+1}-\varphi_i)^2
++\frac12k(\varphi_{i+1}-\varphi_i)^2
 \right].
 \]
-Factoring the lattice spacing $a$ gives
+It is useful to factor out $a$:
 \[
 H=a\sum_i\left[
 \frac12\frac{m}{a}\dot\varphi_i^{\,2}
-+\frac12ka\left(
-\frac{\varphi_{i+1}-\varphi_i}{a}
-\right)^2
++\frac12ka
+\left(\frac{\varphi_{i+1}-\varphi_i}{a}\right)^2
 \right].
 \]
+\textbf{Equation of motion:}\quad Euler--Lagrange equation.
+
 The corresponding Lagrangian is
 \[
 L=a\sum_i\left[
 \frac12\frac{m}{a}\dot\varphi_i^{\,2}
--\frac12ka\left(
-\frac{\varphi_{i+1}-\varphi_i}{a}
-\right)^2
+-\frac12ka
+\left(\frac{\varphi_{i+1}-\varphi_i}{a}\right)^2
 \right].
 \]
 The Euler--Lagrange equation is
 \[
 \frac{\partial L}{\partial\varphi_i}
 -\frac{\dd}{\dd t}
-\frac{\partial L}{\partial\dot\varphi_i}=0,
+\frac{\partial L}{\partial\dot\varphi_i}=0.
 \]
-which gives
+\textbf{Show that}
+\[
+Q=-\frac{m}{a}\ddot\varphi_i
+-ka\frac{2\varphi_i-\varphi_{i+1}-\varphi_{i-1}}{a^2}.
+\]
+One obtains
 \[
 \frac{m}{a}\ddot\varphi_i
--ka\frac{\varphi_{i+1}-2\varphi_i+\varphi_{i-1}}{a^2}=0.
+-ka\frac{2\varphi_i-\varphi_{i+1}-\varphi_{i-1}}{a^2}=0.
 \]
 
-\subsection{Continuum limit}
+\subsection*{Going to the continuum}
 
-The continuum limit is taken as $a\to0$ while
+This amounts to taking $a\to0$ in a specific way:
 \[
 \frac{m}{a}\longrightarrow\mu,
 \qquad
@@ -157,45 +289,78 @@ ka\longrightarrow\chi,
 \qquad
 ia\longrightarrow x.
 \]
-Here $\mu$ is the mass density, $\chi$ is Young's modulus, and $x$ is the position along the string. The discrete variable becomes the displacement field
+Here $\mu$ is the mass density of the string, $\chi$ is Young's modulus of the string, and $x$ is the position of the string.
+
+\textbf{Displacement field:} mapping of a space-time point is a physical quantity.
+
+The displacement field is the map
 \[
 \varphi_i(t)\longrightarrow\varphi(x,t).
 \]
-A discrete set of variables becomes a continuous set of variables, assigning a physical quantity to every space-time point.
+The discrete set of variables becomes a continuous set of variables; a point in space-time is a physical quantity.
 
-The difference is expanded as
+The difference becomes
 \[
 \varphi_{i+1}(t)-\varphi_i(t)
-=\varphi(x+a,t)-\varphi(x,t)
-=\frac{\partial\varphi}{\partial x}a+O(a^2).
+\longrightarrow
+\varphi(x+a,t)-\varphi(x,t)
+=\varphi(x,t)+\frac{\partial\varphi}{\partial x}a+O(a^2).
 \]
-The sum becomes an integral:
+In particular,
+\[
+\varphi(x+a,t)-\varphi(x,t)\simeq\frac{\partial\varphi}{\partial x}a.
+\]
+Also,
 \[
 a\sum_i\longrightarrow\int_0^L\dd x.
 \]
-Thus
+
+Thus, the Lagrangian is
 \[
-S=\int_{t_1}^{t_2}\dd t\int_0^L\dd x\,\mathcal L,
+L=\int_0^L\dd x\,
+\left[\frac12\mu(\partial_t\varphi)^2
+-\frac12\chi(\partial_x\varphi)^2\right].
 \]
-with Lagrangian density
+The Lagrangian density is
 \[
 \mathcal L
 =\frac12\mu(\partial_t\varphi)^2
 -\frac12\chi(\partial_x\varphi)^2.
 \]
-The notes write the continuum equation of motion as
+We have also the action of this system:
+\[
+S=\int_{t_1}^{t_2}\dd t\int_0^L\dd x\,\mathcal L.
+\]
+Equivalently,
+\[
+S=\int_{t_1}^{t_2}\dd t\int_0^L\dd x\,
+\mathcal L(\partial_t\varphi,\partial_x\varphi).
+\]
+
+By taking the continuum limit of the discrete equation of motion, one gets
 \[
 -\mu\left(\frac{\partial\varphi}{\partial t}\right)^2
 +\chi\left(\frac{\partial\varphi}{\partial x}\right)^2=0.
 \]
 
-In general,
+\subsection*{Comments}
+
+\begin{enumerate}
+\item In general,
 \[
 \mathcal L=\mathcal L(\partial_t\varphi,\partial_x\varphi;t).
 \]
-The action is local because it is an integral over time and space of a Lagrangian density depending on the value of the field and its derivatives at one point. The Lagrangian density is a polynomial. The Lagrangian formalism treats time and space on the same footing, as required by relativity. The Hamiltonian makes time explicit while space is disentangled.
+\item A discrete system with short-range interaction becomes, in the continuum limit, a Lagrangian density depending on first-order derivatives of the field with respect to time and space.
+\item The corresponding action is local because $S$ is an integral over time and space of a Lagrangian density which depends on the values of the field and its derivatives at one point. Moreover, the Lagrangian density is a polynomial.
+\end{enumerate}
 
-\section*{Summary}
-The interaction picture separates free evolution from interactions, while the harmonic oscillator shows how quantized excitations arise. The continuum limit replaces discrete coordinates by fields and sums by spatial integrals.
+\subsection*{Remarks}
+
+\begin{itemize}
+\item The Lagrangian formalism will be mainly used because it treats time and space on the same footing (relativity).
+
+\item The Hamiltonian makes time explicit (space is disentangled).
+
+\item The field $\varphi(x,t)$ has continuous variables; it is a dynamical variable (continuous).
+\end{itemize}
 \end{document}
-
