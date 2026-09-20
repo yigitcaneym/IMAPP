@@ -1,47 +1,295 @@
-\documentclass[11pt,a4paper]{article}
-\input{../../../../../templates/lecture-preamble.tex}
-\title{General Relativity --- Lecture 1}
-\author{Andreas Goudelis --- IMAPP lecture notes}
-\date{Spring 2026}
-\begin{document}\maketitle
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=1.55cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,decorations.pathreplacing,calc,positioning,shapes.misc}
+\usepackage{enumitem}
+\usepackage{ulem}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{needspace}
 
-\section{Motivation}
-The four fundamental interactions are electromagnetism, the weak interaction, the strong interaction, and gravity. The first three are described within the Standard Model, while gravity is described classically by general relativity (GR). A central motivation for GR is that it provides a theory of gravity as well as a theory of spacetime.
+\setlength{\parskip}{0.38em}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.25em,itemsep=0.18em,topsep=0.1em}
+\setlist[enumerate]{leftmargin=1.55em,itemsep=0.18em,topsep=0.1em}
+\definecolor{noteRed}{RGB}{215,35,25}
+\definecolor{noteBlue}{RGB}{0,105,235}
+\definecolor{noteGreen}{RGB}{0,145,105}
+\newcommand{\red}[1]{\textcolor{noteRed}{#1}}
+\newcommand{\blue}[1]{\textcolor{noteBlue}{#1}}
+\newcommand{\green}[1]{\textcolor{noteGreen}{#1}}
+\newcommand{\Rp}{\mathcal{R}'}
+\newcommand{\ST}{S\textrm{-}T}
 
-The basic viewpoint is summarized by Wheeler's slogan: matter tells spacetime how to curve, and curved spacetime tells matter how to move. GR is not yet a complete quantum theory, but it is essential in cosmology and in understanding phenomena such as dark matter and the baryon asymmetry of the Universe.
+\begin{document}
+\pagestyle{empty}
 
-\section{Spacetime language}
-An \textbf{event} is a physical occurrence associated with one point in spacetime. It has neither spatial extension nor duration. Examples include the emission of a photon or the presence of a point particle at a spacetime point.
+\begin{center}
+{\Large Andreas Goudelis}
 
-An \textbf{observer} is represented by a reference frame. Different coordinate descriptions are related by coordinate transformations. A worldline is the path traced by a point-like object through spacetime; extended objects sweep out world sheets or world volumes.
+\vspace{1.0em}
+\uline{Indicative bibliography}
+\end{center}
 
-\section{The equivalence principle}
-In Newtonian mechanics a body of inertial mass $m_i$ and gravitational mass $m_g$ obeys
-\[
-m_i\,\mathbf a=m_g\,\mathbf g.
-\]
-The empirical equality $m_i=m_g$ implies the universality of free fall: the acceleration is independent of the composition of the test body.
-
-Einstein's formulation compares a uniform gravitational field with a uniformly accelerated reference frame. Consider an observer in an elevator:
 \begin{itemize}
-  \item In empty space with no acceleration, a released object remains at rest relative to the elevator.
-  \item In empty space with constant upward acceleration, the object approaches the floor.
-  \item In a constant gravitational field, the object also approaches the floor.
-  \item In free fall in a gravitational field, the object floats locally, just as it would in an inertial frame in empty space.
+  \item M. Blau \quad ``Lecture notes on General Relativity''
+  \begin{flushleft}
+  $\longrightarrow$ mostly chapters: \quad $1$--$3$, $8$, $19$, $23$, $29$, $33$, $34$
+  \end{flushleft}
+  \item B. Schutz \quad ``A first course in GR''
+  \item Hobson, Efstathiou, Lasenby: \quad ``GR: An introduction for physicists''
 \end{itemize}
-No local experiment can distinguish a uniform gravitational field from a uniformly accelerated frame. This is the equivalence principle.
 
-\section{Gravitational redshift}
-The equivalence principle predicts a frequency shift. In an accelerated frame, a receiver and emitter separated by a height $h$ acquire a relative velocity approximately
-\[
-\Delta v\simeq ah/c
-\]
-while the photon is in flight. The resulting Doppler shift has the weak-field form
-\[
-\frac{\Delta f}{f}\simeq -\frac{gh}{c^2}.
-\]
-Equivalently, clocks deeper in a gravitational potential tick more slowly than clocks higher up. A photon climbing out of a gravitational field is therefore redshifted.
+\uline{Exam}
 
-\section*{Summary}
-GR replaces the Newtonian picture of a force acting in fixed space with a geometric description of curved spacetime. The equivalence principle is the local bridge between gravity and acceleration and leads directly to gravitational time dilation and redshift.
+$\longrightarrow$ No electronic devices
+
+\begin{tikzpicture}[baseline=(current bounding box.center),>=Stealth]
+  \node (m) at (0,0) {Moodle};
+  \draw[->] (m.east) -- ++(1.0,0.45) node[right] {Syllabus};
+  \draw[->] (m.east) -- ++(1.0,0) node[right] {Extended bibliography};
+  \draw[->] (m.east) -- ++(1.0,-0.45) node[right] {Exercises};
+\end{tikzpicture}
+
+\vspace{0.3em}
+\uline{1) Introduction}
+
+$\bullet$ 4 fundamental interactions
+
+\begin{enumerate}[label=\roman*)]
+  \item EM: Maxwell's eqs / $\{\mathrm{QED}\}$
+  \hfill $\left.\begin{gathered}\text{The SM}\\[0.1em]\mathrm{SU}(2)_L\times\mathrm{U}(1)_Y\\\text{electroweak theory}\end{gathered}\right\}$
+  \item Weak interaction:
+  \item Strong: QCD
+  \item Gravity: Newtonian / General relativity
+\end{enumerate}
+
+$\bullet$ \uline{Why GR?}
+\begin{enumerate}[label=\roman*)]
+  \item it is the 4th interaction
+  \item It is not quantum \uline{yet}
+  \item Particle physics in the cosmos $\longrightarrow$ shortcomings of the SM
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \node (p) at (0,0) {Particle physics in the cosmos};
+  \draw[->] (p.south) .. controls +(0,-0.7) and +(-1,0.2) .. (-2.8,-1.0) node[below] {Dark matter};
+  \draw[->] (p.south) .. controls +(0,-0.7) and +(1,0.2) .. (2.8,-1.0) node[below,align=center] {Baryon asymmetries of the\\ universe};
+\end{tikzpicture}
+\end{center}
+
+\begin{tikzpicture}[>=Stealth]
+  \node (gr) at (0,0) {GR};
+  \draw[->] (gr.east) -- ++(1.2,0.45) node[right] {A theory of gravity};
+  \draw[->] (gr.east) -- ++(1.2,-0.45) node[right] {A theory of space-time};
+  \draw[decorate,decoration={brace,amplitude=5pt}] (4.0,-0.65) -- (4.0,0.65);
+  \draw[->] (4.15,0) -- ++(0.8,0) node[right,text width=4.5cm,align=left] {J. A. Wheeler: ``S-T tells matter how to move and matter tells S-T how to curve''};
+\end{tikzpicture}
+
+\vspace{0.2em}
+\uline{2) Useful notions}
+
+$\bullet$ \uline{Event}: A physical occurrence in space and time \hfill (associated to a specific S-T point)
+
+\textit{Remark}: An event has no spatial extension and no duration.
+
+\textit{Ex}: Emission of a photon
+
+\hspace{1.5em}$-$ The presence of a point-like particle at some S-T point.
+
+$\bullet$ \uline{Observers}: Essentially, a reference frame
+
+\textit{Note}: we can switch reference frames through coordinate transformations
+
+$\bullet$ \uline{Local time}: Each observer has a notion of time and all observers measure time in the same way
+
+$\bullet$ \uline{Worldline}: The path that a point-like object follows in Space and Time
+
+\textit{Note}: For extended objects: world sheets and world volumes
+
+\uline{3) The equivalence principle (EP)}
+
+\vspace{0.4em}
+\textbf{A) Newtonian / Galilean version}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.75]
+  \draw[thick] (-2.8,-1.0) .. controls (-1.3,-0.3) and (1.3,-0.3) .. (2.8,-1.0);
+  \foreach \x in {-2.4,-1.8,-1.2,-0.6,0,0.6,1.2,1.8,2.4} {\draw (\x,-0.85) -- (\x+0.15,-1.25);}
+  \node at (0,-1.28) {Earth};
+  \fill (-1.6,1.0) circle (2.5pt) node[above] {$P$} node[left] {$M_g$};
+  \draw[->,thick] (-1.6,0.9) -- (-1.6,0.05) node[midway,left] {$\vec F_g$};
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+\text{-- From Newtonian gravity}\quad&\longrightarrow\quad \vec F=-M_g\,\vec\nabla\phi,
+&M_g &: \text{``gravitational mass''}\\
+\text{-- From Newtonian mech}\quad&\longrightarrow\quad \vec F=M_i\,\vec a,
+&M_i &: \text{``inertial mass''}
+\end{align*}
+
+\begin{center}
+$M_i\stackrel{?}{=}M_g$\\[-0.2em]
+yes, because we observe so
+\end{center}
+
+Galilean equivalence principle: \qquad $M_i=M_g$
+
+\[
+  \Longrightarrow\quad \vec a=-\vec\nabla\phi
+  \qquad\Longleftrightarrow\qquad \text{universality of free fall}
+\]
+
+\textbf{B) Einstein's version of the E.P.}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.76]
+  \draw[->] (0,0) -- (0,4.0) node[above] {$z$};
+  \draw[->] (0,0) -- (7.0,0) node[right] {$x$};
+  \draw[red,->] (1.25,0.0) -- (1.25,4.0) node[above] {$z'$};
+  \draw[red,->] (1.25,0.45) -- (7.0,0.45) node[right] {$x'$};
+  \draw[red] (1.0,1.0) rectangle (2.95,3.1);
+  \fill (1.95,2.1) circle (2.5pt) node[right] {$M$};
+  \draw[blue,->,very thick] (2.35,2.8) -- (2.35,3.7) node[above] {$\vec g$};
+  \draw[blue,->,very thick] (1.5,2.0) -- (1.5,1.1) node[left] {$\vec F_g$};
+  \node[draw=red,circle,inner sep=1pt] at (6.2,2.0) {$R'$};
+  \node[draw,circle,inner sep=1pt] at (6.2,0.6) {$R$};
+  \node[red,anchor=west] at (6.9,2.0) {moving};
+  \node[anchor=west] at (6.9,0.6) {static};
+  \draw[<->] (-0.35,0) -- (-0.35,0.9) node[midway,left] {$L(t)$};
+\end{tikzpicture}
+\end{center}
+
+$\bullet$ \uline{Case 0}: Elevator in outer space, No forces $\Longrightarrow P$ just floats
+
+$\bullet$ \uline{Case 1}: Still in outer space, elevator accelerated, w/ const ace $\vec g$
+
+\hspace{1.5em}$\Longrightarrow P$ approaches the floor
+
+$\bullet$ \uline{Case 2}: Elevator brought in const. gravitational field
+
+\hspace{1.5em}$\Longrightarrow P$ approaches the floor
+
+$\longrightarrow$ Both $R$ and $R'$ agree on these statements
+
+\textbf{But} $R'$ cannot distinguish 1 from 2.
+
+\begin{center}
+\fbox{\color{noteGreen}\large Gravity = Acceleration}
+\end{center}
+
+\[
+  L(t)=\frac{1}{2}gt^2\quad\Longrightarrow\quad \ddot L(t)=g
+  \qquad\text{and}\qquad z'=z-\frac{1}{2}gt^2
+\]
+\[
+  t'=t\qquad(\text{ignoring SR})
+\]
+
+$-$ In $R$: \qquad $\vec F=M\,\ddot{\vec z}$
+
+$-$ In $R'$: \qquad $\vec F'=M\,\ddot{\vec z}'=M\,\ddot{\vec z}-M\vec g\Longrightarrow \vec F'=\vec F-M\vec g$
+
+$\Longrightarrow$ the acceleration of $R'$ wrt $R$ looks exactly like gravity in $R'$.
+
+\Needspace{4\baselineskip}
+$\bullet$ \uline{Case 3}: Still in the gravitational field and we cut the elevator rope
+
+$\Longrightarrow P$ floats for $R'$.
+
+$\Longrightarrow R'$ cannot tell if he/she is state in outer space or freely falling.
+
+\uline{The equivalence principle}: No physics experiment can distinguish \uline{locally} between a \uline{uniform} grav. field acting on the local \uline{inertial observer} and a \uline{uniform acc.} wrt that local inertial observer.
+
+\hspace{3em}$\longrightarrow$ The one for whom SR holds
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.7,line cap=round,line join=round]
+  \draw[thick] (-2.5,-1.2) .. controls (-1.2,-0.3) and (1.2,-0.3) .. (2.5,-1.2);
+  \foreach \x in {-2.1,-1.5,-0.9,-0.3,0.3,0.9,1.5,2.1} {\draw (\x,-1.0) -- (\x+0.15,-1.45);}
+  % centered head, hair, face, body, arms and legs
+  \draw[thick] (0,1.35) circle (0.38);
+  \draw[thick] (-0.65,1.35) -- (-0.82,1.60) -- (-0.65,1.76) -- (-0.50,1.96) -- (-0.30,1.82) -- (-0.10,2.02) -- (0.10,1.84) -- (0.30,2.02) -- (0.48,1.82) -- (0.68,1.92) -- (0.78,1.68) -- (0.66,1.38);
+  \fill (-0.14,1.48) circle (0.025) (0.14,1.48) circle (0.025);
+  \draw[thick] (-0.18,1.30) arc (220:320:0.22 and 0.18);
+  \draw[thick] (0,0.96) -- (0,0.15);
+  \draw[thick] (-0.62,0.66) -- (0,0.66) -- (0.62,0.66);
+  \draw[thick] (0,0.15) -- (-0.65,-0.78);
+  \draw[thick] (0,0.15) -- (0.65,-0.78);
+  \draw[->] (-1.5,0.8) -- (-2.0,0.1);
+  \draw[->] (1.5,0.8) -- (2.0,0.1);
+  \draw[blue,->,thick] (-0.65,-0.78) -- (-0.65,-1.08);
+  \draw[blue,->,thick] (0.65,-0.78) -- (0.65,-1.08);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.8]
+  \draw[->] (0,0) -- (0,4.3) node[above] {$z$};
+  \draw[->] (0,0) -- (6.7,0) node[right] {$x$};
+  \draw[red,->] (1.05,0.2) -- (1.05,4.3) node[above] {$z'$};
+  \draw[red,->] (1.05,0.5) -- (6.7,0.5) node[right] {$x'$};
+  \draw[red] (0.75,1.0) rectangle (2.35,3.0);
+  \draw[blue,->,thick] (0.0,2.2) -- (0.95,2.2) node[above] {$P_1$};
+  \draw[blue,dashed,thick] (0.95,2.2) .. controls (2.2,2.2) and (2.5,1.5) .. (3.1,1.1);
+  \draw[blue,->,thick] (2.45,1.1) -- (3.5,1.1) node[right] {$P_2$};
+  \draw[red,->,thick] (2.0,1.1) -- (2.0,2.4) node[above] {$\vec v$};
+  \draw[->,thick] (3.9,1.0) -- (3.9,2.7) node[above] {$\vec g$};
+  \node[draw=red,circle,inner sep=1pt] at (5.5,1.8) {$R'$};
+  \node[draw,circle,inner sep=1pt] at (5.5,0.5) {$R$};
+\end{tikzpicture}
+\end{center}
+
+\uline{Exercise}
+
+$\bullet$ \uline{Gravitational redshift}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.72]
+  \draw[->] (0,0) -- (0,5.2) node[above] {$z$};
+  \draw[->] (0,0) -- (5.9,0);
+  \draw[blue,->,thick] (3.4,0.7) -- (3.4,4.4) node[above] {$\vec g$};
+  \draw (0.7,0) rectangle (1.7,1.0) node[midway] {$P$};
+  \draw (0.7,3.5) rectangle (1.7,4.5) node[midway] {$Q$};
+  \draw[thick,decorate,decoration={snake,amplitude=2pt,segment length=5pt}] (1.2,1.05) -- (1.2,3.45) node[midway,right] {$\gamma$};
+  \draw[thick,decorate,decoration={snake,amplitude=2pt,segment length=5pt}] (3.9,1.05) -- (3.9,3.45) node[midway,right] {$\gamma$};
+  \draw[<->] (0.35,1.0) -- (0.35,3.5) node[midway,left] {$d$};
+\end{tikzpicture}
+\end{center}
+
+$P$: emitter \qquad $Q$: Receiver
+
+$-$ photon of frequency $f_P$ emitted from $P$
+
+$Q$: frequency measured by $Q$ ($f_Q$)?
+
+$S_Q/c^2$: Photon ToF $\Delta t=d/c$
+
+During the same time the velocity of $PQ$ increases by $\Delta v=g\Delta t=\dfrac{gd}{c}$.
+
+In the acc. R.F. $Q$ will see a doppler-shifted frequency $f_Q$
+
+\[
+  \frac{f_Q}{f_P}=1-\frac{\Delta v}{c}=1-\frac{gd}{c^2}
+\]
+
+\begin{center}
+\large Equivalence Principle $\ :\ $ Acceleration $\ \Longleftrightarrow\ $ gravity
+\end{center}
+
+$\Longrightarrow$ In the presence of a gravitational field, and in a fixed RF, photons will be redshifted as
+\[
+  \frac{f_Q}{f_P}=1-\frac{gd}{c^2}
+\]
+
+\vspace{1em}
+\textit{Equivalently}: clocks at $Q$ tick slower than clocks at $P$.
+
 \end{document}
