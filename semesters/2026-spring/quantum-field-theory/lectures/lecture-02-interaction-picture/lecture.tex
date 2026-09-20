@@ -1,5 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \input{../../../../../templates/lecture-preamble.tex}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
 \title{Quantum Field Theory --- Lecture 2}
 \author{}
 \date{}
@@ -194,16 +196,16 @@ The normalization factor is determined by
 =\langle n|N|n\rangle
 =n.
 \]
-For $n\geq0$ real, choose
 \[
-\alpha=\sqrt n.
+\Longrightarrow\quad\text{let us choose }\alpha\in\mathbb R^+,
+\qquad \alpha=\sqrt n.
 \]
 Hence
 \[
 a|n\rangle=\sqrt n\,|n-1\rangle.
 \]
 
-The vacuum state satisfies
+\textbf{Vacuum states:}
 \[
 a|0\rangle=0.
 \]
@@ -221,6 +223,18 @@ This is the creation operator. Starting from the vacuum,
 \frac{1}{\sqrt{n!}}(a^\dagger)^n|0\rangle=|n\rangle.
 \]
 
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.55cm]
+  \draw (0,0) -- (2.6,0) node[right=4pt] {$n=0$};
+  \draw (0,1) -- (2.6,1) node[right=4pt] {$n=1$};
+  \draw (0,2) -- (2.6,2) node[right=4pt] {$n=2$};
+  \draw (0,3) -- (2.6,3) node[right=4pt] {$n=3$};
+  \draw[->] (4.0,0.1) -- (4.0,0.9) node[midway,right=5pt] {$\hbar\omega$};
+  \draw[->] (4.0,1.1) -- (4.0,1.9);
+  \draw[->] (4.0,2.1) -- (4.0,2.9);
+\end{tikzpicture}
+\end{center}
+
 \section*{Chapter 2: Classical Field Theory}
 
 \subsection*{Continuous systems --- classical fields}
@@ -231,9 +245,34 @@ A field theory is a theory with a continuum of variables instead of a set of dis
 
 \textit{Problem set up:}
 
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.65cm,>=stealth]
+  \foreach \x in {0,1,2,3,4,5} {\fill (\x,0) circle (1.5pt);}
+  \foreach \x in {0,...,4} {
+    \draw[decorate,decoration={coil,aspect=0.45,segment length=3pt,amplitude=2pt}] (\x+0.08,0) -- (\x+0.92,0);
+  }
+  \node[above] at (0,0) {$i-1$};
+  \node[above] at (1,0) {$i$};
+  \node[above] at (2,0) {$i+1$};
+  \node[below] at (0.5,0) {$a$};
+  \node[below] at (1.5,0) {$a$};
+  \node[below] at (2.5,0) {$a$};
+  \node[below] at (3.5,0) {$\cdots$};
+  \draw[->] (0,-1) -- (5,-1) node[right] {equilibrium};
+  \foreach \x/\u in {0/0,1/0.18,2/-0.18,3/0.22,4/-0.1,5/0.12} {\fill (\x,\u+2) circle (1.5pt);}
+  \foreach \x/\u/\v in {0/0/0.18,1/0.18/-0.18,2/-0.18/0.22,3/0.22/-0.1,4/-0.1/0.12} {
+    \draw[decorate,decoration={coil,aspect=0.45,segment length=3pt,amplitude=2pt}] (\x+0.08,\u+2) -- (\x+0.92,\v+2);
+  }
+  \node[above] at (0,2) {$i-1$};
+  \node[above] at (1,2.18) {$i$};
+  \node[above] at (2,1.82) {$i+1$};
+  \draw[->] (0,1) -- (5,1) node[right] {out of equilibrium};
+\end{tikzpicture}
+\end{center}
+
 Consider an elastic string: an infinite chain of point masses attached with identical massless springs. The set
 \[
-\{\varphi_i,\ i\in\{1,N\}\}
+\{\varphi_i,\ i\in[1,N]\}
 \]
 is the set of discrete variables representing a possible state of the system.
 
