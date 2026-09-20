@@ -15,7 +15,10 @@ U=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H\right].
 \]
 \textbf{States:}
 \[
-|\psi\rangle_H=U|\psi(t)\rangle_S.
+|\psi\rangle_H=U|\psi(t)\rangle_S
+=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H\right]
+\left[\exp\!\left[\frac{\ii}{\hbar}(t-t_0)H\right]
+|\psi_0\rangle\right].
 \]
 \textbf{But since}
 \[
@@ -67,7 +70,8 @@ A_H(t)\text{ picks up a time dependency}.
 then
 \[
 \ii\hbar\,\partial_t A_H(t)
-=-HA_H(t)+A_H(t)H
+=-HUAU^\dagger+UAU^\dagger H
+=[-HA_H(t)+A_H(t)H]
 =[A_H(t),H].
 \]
 
@@ -87,6 +91,12 @@ U=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H_0\right].
 =U|\psi(t)\rangle_S
 =\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H_0\right]
 |\psi(t)\rangle_S.
+\]
+\[
+|\psi\rangle_I
+=\exp\!\left[-\frac{\ii}{\hbar}(t-t_0)H_0\right]
+\exp\!\left[\frac{\ii}{\hbar}(t-t_0)H\right]
+|\psi_0\rangle.
 \]
 \begin{center}
 \textit{Interaction picture}\qquad\textit{S picture}
@@ -250,6 +260,7 @@ A field theory is a theory with a continuum of variables instead of a set of dis
   \foreach \x in {0,1,2,3,4,5} {\fill (\x,0) circle (1.5pt);}
   \foreach \x in {0,...,4} {
     \draw[decorate,decoration={coil,aspect=0.45,segment length=3pt,amplitude=2pt}] (\x+0.08,0) -- (\x+0.92,0);
+    \node[above] at (\x+0.5,0.12) {$k$};
   }
   \node[above] at (0,0) {$i-1$};
   \node[above] at (1,0) {$i$};
@@ -262,6 +273,7 @@ A field theory is a theory with a continuum of variables instead of a set of dis
   \foreach \x/\u in {0/0,1/0.18,2/-0.18,3/0.22,4/-0.1,5/0.12} {\fill (\x,\u+2) circle (1.5pt);}
   \foreach \x/\u/\v in {0/0/0.18,1/0.18/-0.18,2/-0.18/0.22,3/0.22/-0.1,4/-0.1/0.12} {
     \draw[decorate,decoration={coil,aspect=0.45,segment length=3pt,amplitude=2pt}] (\x+0.08,\u+2) -- (\x+0.92,\v+2);
+    \node[above] at (\x+0.5,2.22) {$k$};
   }
   \node[above] at (0,2) {$i-1$};
   \node[above] at (1,2.18) {$i$};
@@ -336,6 +348,13 @@ The displacement field is the map
 \[
 \varphi_i(t)\longrightarrow\varphi(x,t).
 \]
+\begin{center}
+\[
+\text{discrete set of variables}
+\qquad\longrightarrow\qquad
+\text{continuous set of variables}
+\]
+\end{center}
 The discrete set of variables becomes a continuous set of variables; a point in space-time is a physical quantity.
 
 The difference becomes
@@ -375,8 +394,14 @@ Equivalently,
 S=\int_{t_1}^{t_2}\dd t\int_0^L\dd x\,
 \mathcal L(\partial_t\varphi,\partial_x\varphi).
 \]
+With
+\[
+\mathcal L(\partial_t\varphi,\partial_x\varphi)
+=\frac12\mu(\partial_t\varphi)^2
+-\frac12\chi(\partial_x\varphi)^2.
+\]
 
-By taking the continuum limit of the discrete equation of motion, one gets
+By taking the continuum limit of the discrete equation of motion, one gets (exercise)
 \[
 -\mu\left(\frac{\partial\varphi}{\partial t}\right)^2
 +\chi\left(\frac{\partial\varphi}{\partial x}\right)^2=0.
