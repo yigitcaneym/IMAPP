@@ -1,0 +1,382 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1.55cm,top=1.35cm,bottom=1.35cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[enumerate]{leftmargin=1.2cm,itemsep=2pt,topsep=2pt}
+\allowdisplaybreaks
+
+\definecolor{noteRed}{RGB}{210,25,25}
+\newcommand{\rednote}[1]{\textcolor{noteRed}{#1}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\C}{\mathrm{C}}
+
+\begin{document}
+\pagestyle{empty}
+
+% Source page 2
+\underline{\textbf{Subgroups:}}
+
+\underline{Definition:}\quad $H$ of $G$ is a subset of $G$ satisfying the group axioms
+
+Two trivial subgroups: $\{e\}$ and $G$
+
+If $g\in G$, the smallest subgroup containing $g$ is
+\[
+\langle g\rangle=\{g^n\mid n\in\mathbb{Z}\}.
+\]
+
+\emph{Ex:} $\D_3$
+\[
+\{e\},\qquad \D_3,\qquad \{e,r,r^2=r^{-1}\},\qquad \{e,\sigma_1\}.
+\]
+
+\underline{\textbf{Normal subgroup:}}
+
+A subgroup $H$ is normal (invariant)
+if
+\[
+gHg^{-1}=H,\qquad \forall g\in G.
+\]
+\[
+\boxed{H\triangleleft G}
+\]
+
+\emph{Ex:} In $\D_3$: $\{e,r,r^{-1}\}$ is the only proper normal subgroup.
+
+\underline{\textbf{Simple and Semi-simple groups:}}
+
+\underline{Simple:}\quad No nontrivial normal subgroups
+
+\underline{Semi-Simple:}\quad No abelian normal subgroups
+
+\underline{\textbf{Coset decomposition and Lagrange's theorem}}
+
+$H$ is a subgroup of $G$. Cosets are a way of partitioning the group into disjoint pieces of equal size, each piece being ``a shifted copy'' of the subgroup.
+
+% Source page 3
+For $\forall a\in G$,
+\[
+Ha=\{ha\mid h\in H\},\qquad \text{right coset}
+\]
+\[
+aH=\{ah\mid h\in H\},\qquad \text{left coset}
+\]
+
+\underline{Property:}\quad $Ha_i=Ha_j$ or $Ha_i\cap Ha_j=\varnothing$
+
+\underline{Property:}\quad If $H$ is normal,
+\[
+aHa^{-1}=H,
+\]
+\[
+aH=Ha,
+\]
+all left and right coset coincide \ldots
+
+\begin{center}
+\underline{\textbf{Lagrange theorem}}
+\end{center}
+
+Let $G$ be a finite group, $H$ a subgroup. Then:
+
+\begin{enumerate}
+\item
+\[
+G=Ha_1\cup Ha_2\cup\cdots\cup Ha_n,\qquad a_1=e,
+\]
+\[
+G=b_1H\cup b_2H\cup\cdots\cup b_nH,\qquad b_1=e.
+\]
+
+\item
+\[
+|Ha_i|=|a_iH|=|H|.
+\]
+
+\item The number of cosets is the \underline{index} of $H$ in $G$:
+\[
+|G|=n|H|,
+\qquad
+n=|G:H|.
+\]
+\end{enumerate}
+
+\emph{Ex:}
+\[
+\D_3=\{e,r,r^{-1},\sigma_1,\sigma_2,\sigma_3\},\qquad |\D_3|=6,
+\]
+\[
+H=\{e,\sigma_1\},\qquad |H|=2
+\]
+\[
+\Longrightarrow n=|G:H|=\frac{6}{2}=3.
+\]
+
+% Source page 4
+\underline{\textbf{Let's compute left cosets}}
+\[
+eH=\{e,\sigma_1\}=H
+\]
+\[
+rH=\{re,r\sigma_1\}=\{r,\sigma_3\}
+\]
+\[
+r^{-1}H=\{r^{-1},r^{-1}\sigma_1\}=\{r^{-1},\sigma_2\}
+\]
+\[
+\sigma_2H=\{\sigma_2,\sigma_2\sigma_1\}=r^{-1}H
+\]
+\[
+\sigma_3H=rH
+\]
+\[
+\sigma_1H=eH
+\]
+
+\[
+\D_3=\{e,\sigma_1\}\cup\{r,\sigma_3\}\cup\{r^{-1},\sigma_2\}
+\]
+\[
+\Longrightarrow\quad\text{for a right coset:}
+\]
+\[
+\D_3=\{e,\sigma_1\}\cup\{r,\sigma_2\}\cup\{r^{-1},\sigma_3\}.
+\]
+
+\underline{\textbf{Exercise}}
+\[
+K=\{e,r,r^{-1}\},
+\qquad
+gKg^{-1}=K,\quad\forall g\in\D_3
+\]
+\[
+gK=Kg
+\]
+\[
+|K|=3\quad\Longrightarrow\quad n=\frac{6}{3}=2.
+\]
+
+\[
+srs=r^{-1},\qquad srs^{-1}=r^{-1},\qquad r^3=e.
+\]
+
+\[
+eK=K
+\]
+\[
+rK=\{re,rr,rr^{-1}\}=\{r,r^2,e\}=K
+\]
+\[
+r^2K=\{r^2e,r^2r,r^2r^{-1}\}=\{e,r,r^2\}=K
+\]
+\[
+\sigma_1K=\{\sigma_1e,\sigma_1r,\sigma_1r^2\}
+=\{\sigma_1,\sigma_3,\sigma_2\}
+\]
+\[
+\cdots
+\]
+\[
+\sigma_2K=\sigma_3K=\sigma_1K=\{\sigma_1,\sigma_2,\sigma_3\}
+\]
+\[
+\D_3=K\cup\sigma_1K
+\qquad
+\underset{\text{rotations}}{K}\qquad
+\underset{\text{reflections}}{\sigma_1K}.
+\]
+
+% Source page 5
+\underline{\textbf{Conjugate class decomposition}}
+
+\underline{\textbf{Conjugate elements:}}\quad $a,b\in G$; $b$ is conjugate of $a$ if there exists $g\in G$ such that
+\[
+b=gag^{-1}.
+\]
+
+\underline{Prop:}
+\begin{enumerate}
+\item $a=eae^{-1}$.
+
+\item If $b=gag^{-1}$,
+\[
+a=g^{-1}bg.
+\]
+
+\item If $b=g_1ag_1^{-1}$, $c=g_2bg_2^{-1}$,
+\[
+c=g_2g_1a\,(g_2g_1)^{-1}.
+\]
+\end{enumerate}
+
+\underline{\textbf{Conjugacy classes:}}
+
+The conjugacy class of an element $a\in G$ is the set
+\[
+(a)=\{gag^{-1}\mid g\in G\}.
+\]
+
+\rednote{Prop:}
+\begin{enumerate}
+\item If $(a)=\{a\}$, then $a$ is self-conjugate.
+
+\item In any abelian groups, every element is self-conjugate
+\[
+[gag^{-1}=a].
+\]
+
+\item Conjugacy classes are invariant under conjugation:
+\[
+g(a)g^{-1}=(a),\qquad\forall g\in G.
+\]
+\end{enumerate}
+
+\emph{Ex:} $\D_3$
+\[
+(e)=\{e\}\quad\Longleftrightarrow\quad\text{exercise}
+\]
+\[
+(r)=(r^{-1})=\{r,r^{-1}\}
+\]
+\[
+(\sigma_1)=(\sigma_2)=(\sigma_3)=\{\sigma_1,\sigma_2,\sigma_3\}
+\]
+
+\underline{\textbf{Theorem:}} Every group $G$ is the disjoint union of the conjugacy classes of its elements
+\[
+G=\bigcup_{a\in G}(a)
+\]
+\[
+\D_3=\{e\}\cup\{r,r^{-1}\}\cup\{\sigma_1,\sigma_2,\sigma_3\}.
+\]
+
+% Source page 6
+\underline{\textbf{Quotient group:}}\quad $H$ is a normal subgroup of $G$ ($H\triangleleft G$)
+
+Assume
+\[
+G=a_1H\cup a_2H\cup\cdots\cup a_nH,\qquad a_1=e.
+\]
+
+The set
+\[
+G/H=\{a_1H,a_2H,\ldots,a_nH\}
+\]
+is called the quotient group of $G$ by $H$.
+
+\underline{Prop:}
+\begin{enumerate}
+\item For $a_iH,a_jH\in G/H$ the composition is defined as
+\[
+(a_iH)(a_jH)=(a_ia_j)H.
+\]
+
+\item $eH=He=H$.
+
+\item
+\[
+(a_iH)^{-1}=a_i^{-1}H.
+\]
+
+\item $|G|=n_G$, $|H|=n_H$
+\[
+\Longrightarrow\qquad |G/H|=\frac{n_G}{n_H}.
+\]
+\end{enumerate}
+
+\emph{Ex:} $\D_3$
+\[
+H=\{e,r,r^{-1}\}
+\]
+\[
+eH=rH=r^{-1}H
+\]
+\[
+\sigma_1H=\sigma_2H=\sigma_3H=\{\sigma_1,\sigma_2,\sigma_3\}
+\]
+\[
+\D_3/H=\{H,\sigma_1H\}.
+\]
+
+\[
+\begin{array}{c|cc}
+\D_3/H & H & \sigma_1H\\ \hline
+H & (H)(H)=H & (H)(\sigma_1H)=\sigma_1H\\[2pt]
+\sigma_1H & (\sigma_1H)(H)=\sigma_1H &
+(\sigma_1H)(\sigma_1H)=\sigma_1\sigma_1H=H
+\end{array}
+\]
+
+\[
+C_2=\{e,g\},\qquad g^2=e,
+\qquad \D_3/H\simeq C_2.
+\]
+
+% Source page 7
+\underline{\textbf{Centraliser:}}
+
+The centraliser of $S$ in $G$ is the set of
+\[
+C_G(S)=\{g\in G\mid gs=sg\text{ for all }s\in S\}.
+\]
+
+\underline{\textbf{Normalizer:}}
+\[
+N_G(S)=\{g\in G\mid gSg^{-1}=S\}
+=\{g\in G\mid gsg^{-1}\in S\text{ for all }s\in S\}.
+\]
+
+\underline{\textbf{Center:}}
+
+Center of $G$:
+\[
+Z(G)=\{z\in G\mid zg=gz\text{ for all }g\in G\}.
+\]
+
+\underline{\textbf{Remarks}}
+\begin{enumerate}
+\item $C_G(S)$ and $N_G(S)$ are subgroups of $G$.
+
+\item $Z(G)$ is always abelian subgroup of $G$.
+
+\item If $S$ is itself a subgroup then $C_G(S)$ measures how close $S$ is to being central -- whereas $N_G(S)$: how close $S$ is to being normal.
+\end{enumerate}
+
+\underline{\textbf{Direct product}}
+
+A group $G$ is the direct product of $H$ and $K$, $G=H\times K$ if:
+\begin{enumerate}
+\item Every $h\in H$ commutes with $k\in K$, $hk=kh$.
+
+\item Every $g\in G$ can be written \underline{uniquely} as $g=hk$.
+\end{enumerate}
+
+\underline{Prop.}
+\[
+|H|=n_H,\qquad |K|=n_K
+\]
+\[
+\Longrightarrow |G|=n_H\times n_K.
+\]
+
+\underline{Composition}
+\[
+(h_1,k_1)(h_2,k_2)=(h_1h_2,k_1k_2).
+\]
+
+\emph{Ex:}
+\[
+G=\D_3\times\mathbb{Z}_2^+,\qquad
+\mathbb{Z}_2^+=\{0,1\},\quad\text{addition}
+\]
+\[
+\Longrightarrow\quad\text{exercise: Show }\D_6=\D_3\times\mathbb{Z}_2^+.
+\]
+
+\end{document}
